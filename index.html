@@ -9,8 +9,12 @@
   * { box-sizing:border-box; }
   html,body { height:100%; margin:0; }
   body { display:flex; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:#1f1f1f; background:#fff; }
-  #sidebar { width:360px; min-width:360px; height:100vh; display:flex; flex-direction:column; border-right:1px solid var(--border); background:#fbfbfb; }
-  #course-title { padding:16px; font-size:17px; font-weight:700; border-bottom:1px solid var(--border); color:var(--accent); line-height:1.3; }
+  #sidebar { width:360px; min-width:360px; height:100vh; display:flex; flex-direction:column; border-right:1px solid var(--border); background:#fbfbfb; z-index:30; }
+  #sidebar-head { display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border); }
+  #course-title { padding:16px; font-size:17px; font-weight:700; color:var(--accent); line-height:1.3; }
+  #close-btn { display:none; background:none; border:none; font-size:26px; line-height:1; color:#555; padding:8px 14px; cursor:pointer; }
+  #menu-btn { display:none; position:fixed; top:10px; left:10px; z-index:20; width:46px; height:42px; border:none; border-radius:6px; background:var(--accent); color:#fff; font-size:20px; cursor:pointer; }
+  #menu-btn:hover { background:#0043a8; }
   #nav { flex:1; overflow-y:auto; padding:6px 0; }
   #next-btn { margin:12px; padding:12px 16px; border:none; border-radius:6px; background:var(--accent); color:#fff; font-size:15px; font-weight:600; cursor:pointer; }
   #next-btn:hover:not(:disabled) { background:#0043a8; }
@@ -30,11 +34,22 @@
   details[open] > summary .chev { transform:rotate(90deg); }
   #main { flex:1; height:100vh; }
   #viewer { width:100%; height:100%; border:0; display:block; background:#fff; }
+  @media (max-width: 768px) {
+    #menu-btn { display:block; }
+    #close-btn { display:block; }
+    #sidebar { position:fixed; inset:0; width:100%; min-width:0; transform:translateX(-100%); transition:transform .25s ease; }
+    #sidebar.open { transform:translateX(0); }
+    #main { width:100%; }
+  }
 </style>
 </head>
 <body>
+<button id="menu-btn" aria-label="Open menu">&#9776;</button>
 <aside id="sidebar">
-  <div id="course-title"></div>
+  <div id="sidebar-head">
+    <div id="course-title"></div>
+    <button id="close-btn" aria-label="Close menu">&times;</button>
+  </div>
   <nav id="nav"></nav>
   <button id="next-btn">Go to next item &rarr;</button>
 </aside>
@@ -251,8 +266,15 @@ document.getElementById('course-title').textContent = MANIFEST.course;
 const nav = document.getElementById('nav');
 const main = document.getElementById('main');
 const nextBtn = document.getElementById('next-btn');
+const sidebar = document.getElementById('sidebar');
+const menuBtn = document.getElementById('menu-btn');
+const closeBtn = document.getElementById('close-btn');
 const flat = [];
 let current = -1;
+
+function isMobile() { return window.matchMedia('(max-width: 768px)').matches; }
+menuBtn.addEventListener('click', function () { sidebar.classList.add('open'); });
+closeBtn.addEventListener('click', function () { sidebar.classList.remove('open'); });
 
 function makePart(part, modTitle, lesTitle) {
   const el = document.createElement('a');
@@ -304,6 +326,7 @@ function select(i) {
   f.src = encodeURI(item.path);
   main.appendChild(f);
 
+  if (isMobile()) sidebar.classList.remove('open');
   nextBtn.disabled = current >= flat.length - 1;
   try { localStorage.setItem('aiDataLast', String(i)); } catch (e) {}
 }
@@ -321,6 +344,7 @@ try {
   if (!isNaN(v) && v >= 0 && v < flat.length) start = v;
 } catch (e) {}
 if (flat.length) select(start);
+if (isMobile()) sidebar.classList.add('open');
 </script>
 </body>
 </html>
