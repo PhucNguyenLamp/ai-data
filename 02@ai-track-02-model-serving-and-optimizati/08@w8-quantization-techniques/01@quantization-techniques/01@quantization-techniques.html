@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quantization Techniques</title>
+  <script src="../../../resource/jquery.js"></script>
+  <script>
+    $(function () {
+      var math_spans = $('span[hasMath="true"]');
+      if (math_spans.length > 0) {
+        load_css('../../../resource/katex/katex.min.css');
+        load_js('../../../resource/katex/katex.min.js', function () {
+          math_spans.each(function () {
+            katex.render($(this).text(), this, { throwOnError: false });
+          });
+        });
+      }
+    });
+
+    function load_css(url) {
+      $('<link>')
+        .appendTo('head')
+        .attr({
+          type: 'text/css',
+          rel: 'stylesheet',
+          href: url
+        });
+    }
+
+    function load_js(url, func) {
+      $('<script>')
+        .appendTo('head')
+        .attr({
+          src: url
+        })
+        .on('load', func);
+    }
+  </script>
+  <style>
+    .content-container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    pre, p.asset {
+      padding: 1em;
+      background: #f5f2f0;
+      overflow: auto;
+    }
+
+    p, h1, h2, h3, h4, h5, h6 {
+      font-family: OpenSans,Arial,sans-serif;
+      overflow-wrap: break-word;
+    }
+
+    img {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    table, th, td {
+      border: 1px gray solid;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content-container">
+<p>- Objectives: Apply precision reduction methods to decrease model size and enhance inference efficiency.</p><p></p><p>- Topics:</p><ul><li><p>Floating-point representations: FP32, FP16, INT8, and FP8 formats</p></li><li><p>Quantization methodologies: post-training quantization (PTQ) and quantization-aware training (QAT)</p></li><li><p>Advanced quantization algorithms: GPTQ, SmoothQuant, and related techniques</p></li></ul><p></p><p>- Materials:</p><ul><li><p><a target="_blank" rel="noopener noreferrer" href="https://developer.nvidia.com/blog/model-quantization-concepts-methods-and-why-it-matters/">https://developer.nvidia.com/blog/model-quantization-concepts-methods-and-why-it-matters/</a></p></li><li><p><a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/pdf/2211.10438">https://arxiv.org/pdf/2211.10438</a></p></li><li><p><a target="_blank" rel="noopener noreferrer" href="https://github.com/mit-han-lab/smoothquant">https://github.com/mit-han-lab/smoothquant</a></p></li></ul><p></p><p>- Hands-on Labs:</p><ul><li><p>Implementation of SmoothQuant and its application to the Week 1 transformer model</p></li></ul>
+  </div>
+</body>
+</html>

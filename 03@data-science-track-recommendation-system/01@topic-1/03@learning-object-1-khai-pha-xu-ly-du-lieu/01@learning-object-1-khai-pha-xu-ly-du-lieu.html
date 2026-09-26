@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Learning Object 1 - Khai phá & Xử lý dữ liệu (Data Exploration & Processing)</title>
+  <script src="../../../resource/jquery.js"></script>
+  <script>
+    $(function () {
+      var math_spans = $('span[hasMath="true"]');
+      if (math_spans.length > 0) {
+        load_css('../../../resource/katex/katex.min.css');
+        load_js('../../../resource/katex/katex.min.js', function () {
+          math_spans.each(function () {
+            katex.render($(this).text(), this, { throwOnError: false });
+          });
+        });
+      }
+    });
+
+    function load_css(url) {
+      $('<link>')
+        .appendTo('head')
+        .attr({
+          type: 'text/css',
+          rel: 'stylesheet',
+          href: url
+        });
+    }
+
+    function load_js(url, func) {
+      $('<script>')
+        .appendTo('head')
+        .attr({
+          src: url
+        })
+        .on('load', func);
+    }
+  </script>
+  <style>
+    .content-container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    pre, p.asset {
+      padding: 1em;
+      background: #f5f2f0;
+      overflow: auto;
+    }
+
+    p, h1, h2, h3, h4, h5, h6 {
+      font-family: OpenSans,Arial,sans-serif;
+      overflow-wrap: break-word;
+    }
+
+    img {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    table, th, td {
+      border: 1px gray solid;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content-container">
+<p>Mục tiêu: Hiểu giai đoạn đầu tiên của ML project — khai phá (EDA) và xử lý dữ liệu cho bài toán phân loại content (song) của hệ thống Music Recommendation.</p><h2>Nội dung chính:</h2><ol type="1"><li><p>Thu thập và hiểu dữ liệu song: metadata (genre, artist, duration), audio features, và tương tác người dùng (play, skip, like).</p></li><li><p>Exploratory Data Analysis (EDA): phân phối nhãn, dữ liệu thiếu, imbalance giữa các lớp content.</p></li><li><p>Xử lý dữ liệu quy mô lớn với Spark: làm sạch, chuẩn hóa audio features, feature engineering, tạo dataset sẵn sàng cho training.</p></li><li><p>Xây dựng data pipeline có thể tái lập phục vụ các bước modeling &amp; serving sau này.</p></li></ol><h2>Tài liệu học (public links): </h2><p>PySpark DataFrame Guide: <a target="_blank" rel="noopener noreferrer" href="https://spark.apache.org/docs/latest/api/python/getting_started/quickstart_df.html">https://spark.apache.org/docs/latest/api/python/getting_started/quickstart_df.html</a> </p><p>Kaggle - Exploratory Data Analysis Course: <a target="_blank" rel="noopener noreferrer" href="https://www.kaggle.com/learn/data-cleaning">https://www.kaggle.com/learn/data-cleaning</a> </p><p>Million Song Dataset (music data): <a target="_blank" rel="noopener noreferrer" href="http://millionsongdataset.com/">http://millionsongdataset.com/</a> </p><p>Google ML Crash Course - Data Prep: <a target="_blank" rel="noopener noreferrer" href="https://developers.google.com/machine-learning/data-prep">https://developers.google.com/machine-learning/data-prep</a></p><p></p><p> </p><p></p>
+  </div>
+</body>
+</html>

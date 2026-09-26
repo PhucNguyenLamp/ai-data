@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Learning Object 2 - Labeling, Training Deep Model & Evaluation</title>
+  <script src="../../../resource/jquery.js"></script>
+  <script>
+    $(function () {
+      var math_spans = $('span[hasMath="true"]');
+      if (math_spans.length > 0) {
+        load_css('../../../resource/katex/katex.min.css');
+        load_js('../../../resource/katex/katex.min.js', function () {
+          math_spans.each(function () {
+            katex.render($(this).text(), this, { throwOnError: false });
+          });
+        });
+      }
+    });
+
+    function load_css(url) {
+      $('<link>')
+        .appendTo('head')
+        .attr({
+          type: 'text/css',
+          rel: 'stylesheet',
+          href: url
+        });
+    }
+
+    function load_js(url, func) {
+      $('<script>')
+        .appendTo('head')
+        .attr({
+          src: url
+        })
+        .on('load', func);
+    }
+  </script>
+  <style>
+    .content-container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    pre, p.asset {
+      padding: 1em;
+      background: #f5f2f0;
+      overflow: auto;
+    }
+
+    p, h1, h2, h3, h4, h5, h6 {
+      font-family: OpenSans,Arial,sans-serif;
+      overflow-wrap: break-word;
+    }
+
+    img {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    table, th, td {
+      border: 1px gray solid;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content-container">
+<p></p><p>Mục tiêu: Nắm cách làm label dữ liệu, huấn luyện deep model và đánh giá (evaluation) cho bài toán phân loại content (song).</p><h1>Nội dung chính:</h1><ol type="1"><li><p>Data labeling: xây dựng tập nhãn cho song (theo genre/mood/tag), sử dụng weak supervision và kiểm soát chất lượng nhãn.</p></li><li><p>Training deep model: mô hình phân loại dựa trên audio embedding và/hoặc text (metadata, lyrics); fine-tune pretrained model (ví dụ Transformer-based encoder, MERT cho audio).</p></li><li><p>Evaluation: chọn metric phù hợp (accuracy, precision/recall, F1, ROC-AUC) và xử lý imbalance; cross-validation.</p></li><li><p>Theo dõi thí nghiệm và so sánh các phiên bản model.</p></li></ol><h2>Tài liệu học (public links): </h2><ul><li><p>Deep Learning for Audio Classification (TensorFlow): <a target="_blank" rel="noopener noreferrer" href="https://www.tensorflow.org/tutorials/audio/simple_audio">https://www.tensorflow.org/tutorials/audio/simple_audio</a></p></li><li><p>Hugging Face - Audio Classification Course: <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/learn/audio-course/chapter4/introduction">https://huggingface.co/learn/audio-course/chapter4/introduction</a> </p></li><li><p>Scikit-learn Model Evaluation Metrics: <a target="_blank" rel="noopener noreferrer" href="https://scikit-learn.org/stable/modules/model_evaluation.html">https://scikit-learn.org/stable/modules/model_evaluation.html</a> </p></li><li><p>Transformer (Attention Is All You Need): <a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a> </p></li><li><p>Hugging Face Transformers Docs: <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/transformers/index">https://huggingface.co/docs/transformers/index</a> </p></li><li><p>MERT (Music Understanding model): <a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2306.00107">https://arxiv.org/abs/2306.00107</a> </p></li><li><p>MERT Model on Hugging Face: <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/m-a-p/MERT-v1-95M">https://huggingface.co/m-a-p/MERT-v1-95M</a></p></li></ul><p></p><p> </p><p></p>
+  </div>
+</body>
+</html>

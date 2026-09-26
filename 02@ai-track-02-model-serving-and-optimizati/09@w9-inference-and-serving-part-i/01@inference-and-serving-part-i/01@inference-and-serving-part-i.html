@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inference and Serving (Part I)</title>
+  <script src="../../../resource/jquery.js"></script>
+  <script>
+    $(function () {
+      var math_spans = $('span[hasMath="true"]');
+      if (math_spans.length > 0) {
+        load_css('../../../resource/katex/katex.min.css');
+        load_js('../../../resource/katex/katex.min.js', function () {
+          math_spans.each(function () {
+            katex.render($(this).text(), this, { throwOnError: false });
+          });
+        });
+      }
+    });
+
+    function load_css(url) {
+      $('<link>')
+        .appendTo('head')
+        .attr({
+          type: 'text/css',
+          rel: 'stylesheet',
+          href: url
+        });
+    }
+
+    function load_js(url, func) {
+      $('<script>')
+        .appendTo('head')
+        .attr({
+          src: url
+        })
+        .on('load', func);
+    }
+  </script>
+  <style>
+    .content-container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    pre, p.asset {
+      padding: 1em;
+      background: #f5f2f0;
+      overflow: auto;
+    }
+
+    p, h1, h2, h3, h4, h5, h6 {
+      font-family: OpenSans,Arial,sans-serif;
+      overflow-wrap: break-word;
+    }
+
+    img {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    table, th, td {
+      border: 1px gray solid;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content-container">
+<p>- Objectives:</p><ul><li><p>Understand inference optimization.</p></li><li><p>Learn how to use Nsight Systems to profile the system.</p></li></ul><p></p><p>- Topics:</p><ul><li><p>Introduction to Nsight Systems and inference optimization techniques</p></li><li><p>Inference optimization techniques:</p><ul><li><p>  Dynamic batching</p></li><li><p>  CUDA Graphs to reduce kernel launch overhead</p></li><li><p>  Overlapping compute and data transfer with multiple CUDA streams</p></li><li><p>  Overlapping CPU and GPU</p></li><li><p>  Padding removal and variable-length (unpadded) sequence handling</p></li><li><p>  Request scheduling and concurrency management</p></li></ul></li></ul><p></p><p>- Materials:</p><ul><li><p><a target="_blank" rel="noopener noreferrer" href="https://henryhmko.github.io/posts/profiling/profiling.html">https://henryhmko.github.io/posts/profiling/profiling.html</a></p></li><li><p><a target="_blank" rel="noopener noreferrer" href="https://www.baseten.co/blog/continuous-vs-dynamic-batching-for-ai-inference/#static-batching-for-scheduled-load">https://www.baseten.co/blog/continuous-vs-dynamic-batching-for-ai-inference/#static-batching-for-scheduled-load</a></p></li><li><p><a target="_blank" rel="noopener noreferrer" href="https://medium.com/better-ml/dynamic-batching-vs-sequence-packing-0ef4a3894dad">https://medium.com/better-ml/dynamic-batching-vs-sequence-packing-0ef4a3894dad</a></p></li><li><p><a target="_blank" rel="noopener noreferrer" href="https://developer.nvidia.com/blog/how-overlap-data-transfers-cuda-cc/">https://developer.nvidia.com/blog/how-overlap-data-transfers-cuda-cc/</a></p></li></ul><p></p><p>- Hands-on Labs:</p><ul><li><p>Implement an inference engine with a model runner, scheduler, batching mechanisms, CUDA Graphs, etc.</p></li><li><p>Use Nsight Systems to optimize the inference system.</p></li></ul>
+  </div>
+</body>
+</html>

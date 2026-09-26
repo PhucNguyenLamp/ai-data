@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hardware Basics and GPU Programming (Part I)</title>
+  <script src="../../../resource/jquery.js"></script>
+  <script>
+    $(function () {
+      var math_spans = $('span[hasMath="true"]');
+      if (math_spans.length > 0) {
+        load_css('../../../resource/katex/katex.min.css');
+        load_js('../../../resource/katex/katex.min.js', function () {
+          math_spans.each(function () {
+            katex.render($(this).text(), this, { throwOnError: false });
+          });
+        });
+      }
+    });
+
+    function load_css(url) {
+      $('<link>')
+        .appendTo('head')
+        .attr({
+          type: 'text/css',
+          rel: 'stylesheet',
+          href: url
+        });
+    }
+
+    function load_js(url, func) {
+      $('<script>')
+        .appendTo('head')
+        .attr({
+          src: url
+        })
+        .on('load', func);
+    }
+  </script>
+  <style>
+    .content-container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    pre, p.asset {
+      padding: 1em;
+      background: #f5f2f0;
+      overflow: auto;
+    }
+
+    p, h1, h2, h3, h4, h5, h6 {
+      font-family: OpenSans,Arial,sans-serif;
+      overflow-wrap: break-word;
+    }
+
+    img {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    table, th, td {
+      border: 1px gray solid;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content-container">
+<p>- Objectives: Develop knowledge of GPU architectures and CUDA programming paradigms.</p><p></p><p>- Topics:</p><ul><li><p>Introduction to GPU architectures and CUDA programming</p></li><li><p>GPU execution and memory model: memory hierarchy (global, shared, and registers), warps, and occupancy</p></li></ul><p></p><p>- Materials:</p><ul><li><p><a target="_blank" rel="noopener noreferrer" href="https://docs.nvidia.com/cuda/pdf/CUDA_C_Programming_Guide.pdf">https://docs.nvidia.com/cuda/pdf/CUDA_C_Programming_Guide.pdf</a></p></li><li><p>Professional CUDA C Programming Book</p></li><li><p>Programming Massively Parallel Processors Book</p></li><li><p><a target="_blank" rel="noopener noreferrer" href="https://modal.com/gpu-glossary">https://modal.com/gpu-glossary</a></p></li></ul><p></p><p>- Hands-on Labs:</p><ul><li><p>Implementation of GPU kernels: GELU, LayerNorm, and Softmax</p></li></ul>
+  </div>
+</body>
+</html>

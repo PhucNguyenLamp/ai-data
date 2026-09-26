@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Các phương pháp đánh giá mô hình ML</title>
+  <script src="../../../resource/jquery.js"></script>
+  <script>
+    $(function () {
+      var math_spans = $('span[hasMath="true"]');
+      if (math_spans.length > 0) {
+        load_css('../../../resource/katex/katex.min.css');
+        load_js('../../../resource/katex/katex.min.js', function () {
+          math_spans.each(function () {
+            katex.render($(this).text(), this, { throwOnError: false });
+          });
+        });
+      }
+    });
+
+    function load_css(url) {
+      $('<link>')
+        .appendTo('head')
+        .attr({
+          type: 'text/css',
+          rel: 'stylesheet',
+          href: url
+        });
+    }
+
+    function load_js(url, func) {
+      $('<script>')
+        .appendTo('head')
+        .attr({
+          src: url
+        })
+        .on('load', func);
+    }
+  </script>
+  <style>
+    .content-container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    pre, p.asset {
+      padding: 1em;
+      background: #f5f2f0;
+      overflow: auto;
+    }
+
+    p, h1, h2, h3, h4, h5, h6 {
+      font-family: OpenSans,Arial,sans-serif;
+      overflow-wrap: break-word;
+    }
+
+    img {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    table, th, td {
+      border: 1px gray solid;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content-container">
+<p>Dưới đây là các tài liệu về việc các phương pháp đánh giá, cách dùng các phương pháp đó khi nào thì hợp lý.</p><p><a target="_blank" rel="noopener noreferrer" href="https://madewithml.com/courses/mlops/evaluation/">1. các phương pháp đánh giá ML cơ bản</a></p><p>2. các bài blog khác</p><ul><li><p><a target="_blank" rel="noopener noreferrer" href="https://www.drivedatascience.com/model-evaluation-confusion-matrix-precision-recall-f1-roc-auc-cross-validation/">deep dive vào các metric + sample</a></p></li><li><p><a target="_blank" rel="noopener noreferrer" href="https://www.datacamp.com/tutorial/understanding-data-drift-model-drift">Cách đánh giá data drift/ model drift</a></p></li></ul>
+  </div>
+</body>
+</html>

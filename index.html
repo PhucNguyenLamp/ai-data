@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tech Fresher 2026 - Data & AI Training</title>
+<style>
+  :root { --accent:#0056d2; --border:#e4e4e4; --hover:#f0f6ff; --sel:#e1ecff; }
+  * { box-sizing:border-box; }
+  html,body { height:100%; margin:0; }
+  body { display:flex; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:#1f1f1f; background:#fff; }
+  #sidebar { width:360px; min-width:360px; height:100vh; display:flex; flex-direction:column; border-right:1px solid var(--border); background:#fbfbfb; }
+  #course-title { padding:16px; font-size:17px; font-weight:700; border-bottom:1px solid var(--border); color:var(--accent); line-height:1.3; }
+  #nav { flex:1; overflow-y:auto; padding:6px 0; }
+  #next-btn { margin:12px; padding:12px 16px; border:none; border-radius:6px; background:var(--accent); color:#fff; font-size:15px; font-weight:600; cursor:pointer; }
+  #next-btn:hover:not(:disabled) { background:#0043a8; }
+  #next-btn:disabled { opacity:.45; cursor:default; }
+  .module { margin-bottom:2px; }
+  .module > summary, .lesson > summary { list-style:none; cursor:pointer; user-select:none; display:flex; align-items:center; gap:8px; }
+  summary::-webkit-details-marker { display:none; }
+  .module > summary { padding:12px 16px; font-weight:700; font-size:15px; }
+  .module > summary:hover { background:var(--hover); }
+  .lesson { margin-left:8px; }
+  .lesson > summary { padding:9px 16px 9px 22px; font-weight:600; font-size:14px; color:#333; }
+  .lesson > summary:hover { background:var(--hover); }
+  .part { display:block; padding:8px 16px 8px 44px; font-size:13.5px; color:#555; text-decoration:none; cursor:pointer; border-left:3px solid transparent; }
+  .part:hover { background:var(--hover); color:#1f1f1f; }
+  .part.active { background:var(--sel); color:var(--accent); font-weight:600; border-left-color:var(--accent); }
+  .chev { transition:transform .15s ease; font-size:10px; color:#888; flex:0 0 auto; }
+  details[open] > summary .chev { transform:rotate(90deg); }
+  #main { flex:1; height:100vh; }
+  #viewer { width:100%; height:100%; border:0; display:block; background:#fff; }
+</style>
+</head>
+<body>
+<aside id="sidebar">
+  <div id="course-title"></div>
+  <nav id="nav"></nav>
+  <button id="next-btn">Go to next item &rarr;</button>
+</aside>
+<main id="main"></main>
+<script>
+const MANIFEST = {
+    "course":  "Tech Fresher 2026 - Data \u0026 AI Training",
+    "modules":  [
+                    {
+                        "title":  "[AI Track 01]: Build ML models for an Application",
+                        "folder":  "01@ai-track-01-build-ml-models-for-an-appli",
+                        "lessons":  [
+                                        {
+                                            "title":  "1. Rule of Machine Learning",
+                                            "folder":  "01@1-rule-of-machine-learning",
+                                            "parts":  [
+                                                          {
+                                                              "title":  "Rule of Machine Learning by google",
+                                                              "path":  "01@ai-track-01-build-ml-models-for-an-appli/01@1-rule-of-machine-learning/01@rule-of-machine-learning-by-google/01@rule-of-machine-learning-by-google.html"
+                                                          },
+                                                          {
+                                                              "title":  "Data-Centric AI Approach by Andrew",
+                                                              "path":  "01@ai-track-01-build-ml-models-for-an-appli/01@1-rule-of-machine-learning/02@data-centric-ai-approach-by-andrew/01@data-centric-ai-approach-by-andrew.html"
+                                                          },
+                                                          {
+                                                              "title":  "Write the report that shows your understanding about the topic",
+                                                              "path":  "01@ai-track-01-build-ml-models-for-an-appli/01@1-rule-of-machine-learning/03@write-the-report-that-shows-your-understanding/01@write-the-report-that-shows-your-understanding.html"
+                                                          }
+                                                      ]
+                                        },
+                                        {
+                                            "title":  "2. Machine learning in production ",
+                                            "folder":  "02@2-machine-learning-in-production",
+                                            "parts":  [
+                                                          {
+                                                              "title":  "Machine learning in production by deeplearning.ai",
+                                                              "path":  "01@ai-track-01-build-ml-models-for-an-appli/02@2-machine-learning-in-production/01@machine-learning-in-production-by-deeple/01@machine-learning-in-production-by-deeple.html"
+                                                          }
+                                                      ]
+                                        },
+                                        {
+                                            "title":  "3. Đánh giá các mô hình ML",
+                                            "folder":  "03@3-danh-gia-cac-mo-hinh-ml",
+                                            "parts":  [
+                                                          {
+                                                              "title":  "Các phương pháp đánh giá mô hình ML",
+                                                              "path":  "01@ai-track-01-build-ml-models-for-an-appli/03@3-danh-gia-cac-mo-hinh-ml/01@cac-phuong-phap-danh-gia-mo-hinh-ml/01@cac-phuong-phap-danh-gia-mo-hinh-ml.html"
+                                                          }
+                                                      ]
+                                        },
+                                        {
+                                            "title":  "4. Working with Data",
+                                            "folder":  "04@4-working-with-data",
+                                            "parts":  [
+                                                          {
+                                                              "title":  "Các phương pháp để làm việc với dữ liệu",
+                                                              "path":  "01@ai-track-01-build-ml-models-for-an-appli/04@4-working-with-data/01@cac-phuong-phap-de-lam-viec-voi-du-lieu/01@cac-phuong-phap-de-lam-viec-voi-du-lieu.html"
+                                                          }
+                                                      ]
+                                        }
+                                    ]
+                    },
+                    {
+                        "title":  "[AI Track 02]: Model Serving and Optimization",
+                        "folder":  "02@ai-track-02-model-serving-and-optimizati",
+                        "lessons":  [
+                                        {
+                                            "title":  "W1. Introduction to Transformer Architectures",
+                                            "folder":  "01@w1-introduction-to-transformer-architect",
+                                            "parts":  [
+                                                          {
+                                                              "title":  "Introduction to Transformer Architectures",
+                                                              "path":  "02@ai-track-02-model-serving-and-optimizati/01@w1-introduction-to-transformer-architect/01@introduction-to-transformer-architecture/01@introduction-to-transformer-architecture.html"
+                                                          },
+                                                          {
+                                                              "title":  "Huấn luyện mô hình phân loại văn bản đơn giản với BERT, có đánh giá chất lượng của bộ phân lớp",
+                                                              "path":  "02@ai-track-02-model-serving-and-optimizati/01@w1-introduction-to-transformer-architect/02@huan-luyen-mo-hinh-phan-loai-van-ban-voi-bert/01@huan-luyen-mo-hinh-phan-loai-van-ban-voi-bert.html"
+                                                          }
+                                                      ]
+                                        },
+                                        {
+                                            "title":  "W2. Hardware Basics and GPU Programming (Part I)",
+                                            "folder":  "02@w2-hardware-basics-and-gpu-programming-p",
+                                            "parts":  [
+                                                          {
+                                                              "title":  "Hardware Basics and GPU Programming (Part I)",
+                                                              "path":  "02@ai-track-02-model-serving-and-optimizati/02@w2-hardware-basics-and-gpu-programming-p/01@hardware-basics-and-gpu-programming-part/01@hardware-basics-and-gpu-programming-part.html"
+                                                          }
+                                                      ]
+                                        },
+                                        {
+                                            "title":  "W3. Hardware Basics and GPU Programming (Part II)",
+                                            "folder":  "03@w3-hardware-basics-and-gpu-programming-p",
+                                            "parts":  [
+                                                          {
+                                                              "title":  "Hardware Basics and GPU Programming (Part II)",
+                                                              "path":  "02@ai-track-02-model-serving-and-optimizati/03@w3-hardware-basics-and-gpu-programming-p/01@hardware-basics-and-gpu-programming-part/01@hardware-basics-and-gpu-programming-part.html"
+                                                          }
+                                                      ]
+                                        },
+                                        {
+                                            "title":  "W4. Hardware Basics and GPU Programming (Part III)",
+                                            "folder":  "04@w4-hardware-basics-and-gpu-programming-p",
+                                            "parts":  [
+                                                          {
+                                                              "title":  "Hardware Basics and GPU Programming (Part III)",
+                                                              "path":  "02@ai-track-02-model-serving-and-optimizati/04@w4-hardware-basics-and-gpu-programming-p/01@hardware-basics-and-gpu-programming-part/01@hardware-basics-and-gpu-programming-part.html"
+                                                          }
+                                                      ]
+                                        },
+                                        {
+                                            "title":  "W5. Python Bindings for GPU Kernels",
+                                            "folder":  "05@w5-python-bindings-for-gpu-kernels",
+                                            "parts":  [
+                                                          {
+                                                              "title":  "Python Bindings for GPU Kernels",
+                                                              "path":  "02@ai-track-02-model-serving-and-optimizati/05@w5-python-bindings-for-gpu-kernels/01@python-bindings-for-gpu-kernels/01@python-bindings-for-gpu-kernels.html"
+                                                          }
+                                                      ]
+                                        },
+                                        {
+                                            "title":  "W6. Advanced Optimization Techniques (Part I)",
+                                            "folder":  "06@w6-advanced-optimization-techniques-part",
+                                            "parts":  [
+                                                          {
+                                                              "title":  "Advanced Optimization Techniques (Part I)",
+                                                              "path":  "02@ai-track-02-model-serving-and-optimizati/06@w6-advanced-optimization-techniques-part/01@advanced-optimization-techniques-part-i/01@advanced-optimization-techniques-part-i.html"
+                                                          }
+                                                      ]
+                                        },
+                                        {
+                                            "title":  "W7. Advanced Optimization Techniques (Part II)",
+                                            "folder":  "07@w7-advanced-optimization-techniques-part",
+                                            "parts":  [
+                                                          {
+                                                              "title":  "Advanced Optimization Techniques (Part II)",
+                                                              "path":  "02@ai-track-02-model-serving-and-optimizati/07@w7-advanced-optimization-techniques-part/01@advanced-optimization-techniques-part-ii/01@advanced-optimization-techniques-part-ii.html"
+                                                          }
+                                                      ]
+                                        },
+                                        {
+                                            "title":  "W8. Quantization Techniques",
+                                            "folder":  "08@w8-quantization-techniques",
+                                            "parts":  [
+                                                          {
+                                                              "title":  "Quantization Techniques",
+                                                              "path":  "02@ai-track-02-model-serving-and-optimizati/08@w8-quantization-techniques/01@quantization-techniques/01@quantization-techniques.html"
+                                                          }
+                                                      ]
+                                        },
+                                        {
+                                            "title":  "W9. Inference and Serving (Part I)",
+                                            "folder":  "09@w9-inference-and-serving-part-i",
+                                            "parts":  [
+                                                          {
+                                                              "title":  "Inference and Serving (Part I)",
+                                                              "path":  "02@ai-track-02-model-serving-and-optimizati/09@w9-inference-and-serving-part-i/01@inference-and-serving-part-i/01@inference-and-serving-part-i.html"
+                                                          }
+                                                      ]
+                                        },
+                                        {
+                                            "title":  "W10. Inference and Serving (Part II)",
+                                            "folder":  "10@w10-inference-and-serving-part-ii",
+                                            "parts":  [
+                                                          {
+                                                              "title":  "Inference and Serving (Part II)",
+                                                              "path":  "02@ai-track-02-model-serving-and-optimizati/10@w10-inference-and-serving-part-ii/01@inference-and-serving-part-ii/01@inference-and-serving-part-ii.html"
+                                                          }
+                                                      ]
+                                        }
+                                    ]
+                    },
+                    {
+                        "title":  "[Data Science Track]: Recommendation System: Content Understanding",
+                        "folder":  "03@data-science-track-recommendation-system",
+                        "lessons":  [
+                                        {
+                                            "title":  "Topic 1: ....",
+                                            "folder":  "01@topic-1",
+                                            "parts":  [
+                                                          {
+                                                              "title":  "Working with Claude Code",
+                                                              "path":  "03@data-science-track-recommendation-system/01@topic-1/01@working-with-claude-code/01@working-with-claude-code.html"
+                                                          },
+                                                          {
+                                                              "title":  "Learning Object 1: Music Processing ",
+                                                              "path":  "03@data-science-track-recommendation-system/01@topic-1/02@learning-object-1-music-processing/01@learning-object-1-music-processing.html"
+                                                          },
+                                                          {
+                                                              "title":  "Learning Object 1 - Khai phá \u0026 Xử lý dữ liệu (Data Exploration \u0026 Processing)",
+                                                              "path":  "03@data-science-track-recommendation-system/01@topic-1/03@learning-object-1-khai-pha-xu-ly-du-lieu/01@learning-object-1-khai-pha-xu-ly-du-lieu.html"
+                                                          },
+                                                          {
+                                                              "title":  "Learning Object 2 - Labeling, Training Deep Model \u0026 Evaluation",
+                                                              "path":  "03@data-science-track-recommendation-system/01@topic-1/04@learning-object-2-labeling-training-deep/01@learning-object-2-labeling-training-deep.html"
+                                                          },
+                                                          {
+                                                              "title":  "Learning Object 3 - Công cu Data Science / MLOps (Spark, Kafka, MLflow, Airflow, S3, K8s)",
+                                                              "path":  "03@data-science-track-recommendation-system/01@topic-1/05@learning-object-3-cong-cu-data-science-m/01@learning-object-3-cong-cu-data-science-m.html"
+                                                          },
+                                                          {
+                                                              "title":  "Learning Object 4 - Model Serving \u0026 AI Agents (LLM)",
+                                                              "path":  "03@data-science-track-recommendation-system/01@topic-1/06@learning-object-4-model-serving-ai-agent/01@learning-object-4-model-serving-ai-agent.html"
+                                                          }
+                                                      ]
+                                        }
+                                    ]
+                    }
+                ]
+};
+
+document.getElementById('course-title').textContent = MANIFEST.course;
+
+const nav = document.getElementById('nav');
+const main = document.getElementById('main');
+const nextBtn = document.getElementById('next-btn');
+const flat = [];
+let current = -1;
+
+function makePart(part, modTitle, lesTitle) {
+  const el = document.createElement('a');
+  el.className = 'part';
+  el.textContent = part.title;
+  el.href = '#';
+  const idx = flat.length;
+  flat.push({ title: part.title, path: part.path, module: modTitle, lesson: lesTitle, el: el });
+  el.addEventListener('click', function (e) { e.preventDefault(); select(idx); });
+  return el;
+}
+
+MANIFEST.modules.forEach(function (mod) {
+  const md = document.createElement('details');
+  md.className = 'module';
+  const ms = document.createElement('summary');
+  ms.innerHTML = '<span class="chev">\u25B6</span><span></span>';
+  ms.lastElementChild.textContent = mod.title;
+  md.appendChild(ms);
+
+  mod.lessons.forEach(function (les) {
+    const ld = document.createElement('details');
+    ld.className = 'lesson';
+    const ls = document.createElement('summary');
+    ls.innerHTML = '<span class="chev">\u25B6</span><span></span>';
+    ls.lastElementChild.textContent = les.title;
+    ld.appendChild(ls);
+    les.parts.forEach(function (p) { ld.appendChild(makePart(p, mod.title, les.title)); });
+    md.appendChild(ld);
+  });
+
+  nav.appendChild(md);
+});
+
+function select(i) {
+  if (i < 0 || i >= flat.length) return;
+  if (current >= 0 && flat[current]) flat[current].el.classList.remove('active');
+  current = i;
+  const item = flat[i];
+  item.el.classList.add('active');
+
+  let p = item.el.parentElement;
+  while (p) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; }
+  item.el.scrollIntoView({ block: 'nearest' });
+
+  main.innerHTML = '';
+  const f = document.createElement('iframe');
+  f.id = 'viewer';
+  f.src = encodeURI(item.path);
+  main.appendChild(f);
+
+  nextBtn.disabled = current >= flat.length - 1;
+  try { localStorage.setItem('aiDataLast', String(i)); } catch (e) {}
+}
+
+nextBtn.addEventListener('click', function () { select(current + 1); });
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowRight') select(current + 1);
+  else if (e.key === 'ArrowLeft') select(current - 1);
+});
+
+let start = 0;
+try {
+  const v = parseInt(localStorage.getItem('aiDataLast'), 10);
+  if (!isNaN(v) && v >= 0 && v < flat.length) start = v;
+} catch (e) {}
+if (flat.length) select(start);
+</script>
+</body>
+</html>

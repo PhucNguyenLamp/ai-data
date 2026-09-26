@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inference and Serving (Part II)</title>
+  <script src="../../../resource/jquery.js"></script>
+  <script>
+    $(function () {
+      var math_spans = $('span[hasMath="true"]');
+      if (math_spans.length > 0) {
+        load_css('../../../resource/katex/katex.min.css');
+        load_js('../../../resource/katex/katex.min.js', function () {
+          math_spans.each(function () {
+            katex.render($(this).text(), this, { throwOnError: false });
+          });
+        });
+      }
+    });
+
+    function load_css(url) {
+      $('<link>')
+        .appendTo('head')
+        .attr({
+          type: 'text/css',
+          rel: 'stylesheet',
+          href: url
+        });
+    }
+
+    function load_js(url, func) {
+      $('<script>')
+        .appendTo('head')
+        .attr({
+          src: url
+        })
+        .on('load', func);
+    }
+  </script>
+  <style>
+    .content-container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    pre, p.asset {
+      padding: 1em;
+      background: #f5f2f0;
+      overflow: auto;
+    }
+
+    p, h1, h2, h3, h4, h5, h6 {
+      font-family: OpenSans,Arial,sans-serif;
+      overflow-wrap: break-word;
+    }
+
+    img {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    table, th, td {
+      border: 1px gray solid;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content-container">
+<p>- Objectives: Understand model serving and benchmarking.</p><p></p><p>- Topics:</p><ul><li><p>Overview of inference optimization and model serving</p></li><li><p>Key concepts in latency, throughput, batching, scheduling, and resource utilization</p></li><li><p>Serving benchmark metrics: latency percentiles (p50, p95, and p99), throughput (QPS), and concurrency</p></li></ul><p></p><p>- Materials</p><ul><li><p><a target="_blank" rel="noopener noreferrer" href="https://www.lmsys.org/blog/2025-12-17-minisgl/">https://www.lmsys.org/blog/2025-12-17-minisgl/</a></p></li></ul><p></p><p>- Hands-on Labs:</p><ul><li><p>Build HTTP and gRPC services for model serving.</p></li><li><p>Benchmarking of the service: analysis of throughput, latency, and accuracy trade-offs</p></li></ul>
+  </div>
+</body>
+</html>
